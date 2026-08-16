@@ -104,6 +104,36 @@ def image(country_id):
     finally:
         if db:
             db.close()
+import base64 # Bunu sayfanın en üstüne (importların olduğu yere) eklemeyi unutma
+
+@app.route('/project/<int:project_id>')
+def project_detail(project_id):
+    try:
+        db = sql.connect("blog.db")
+        db.row_factory = sql.Row # KRİTİK EKLEME: HTML'de project['name'] yazabilmek için
+        
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM Projects WHERE id = ?", (project_id,))
+        project = cursor.fetchone()
+        
+        if project:
+            # KRİTİK EKLEME: BLOB fotoğrafı HTML'nin okuyabileceği formata çevirme
+            photo_base64 = None
+            if project['photo']:
+                photo_base64 = base64.b64encode(project['photo']).decode('utf-8')
+                
+            # photo_base64 değişkenini de template'e yolluyoruz
+            return render_template('project_detail.html', project=project, photo_base64=photo_base64)
+            
+        return "Project could not found!", 404
+        
+    except sql.Error as e:
+        print(f"Database Error!: {e}")
+        return "Something went wrong!", 500
+    finally:
+        if db:
+            db.close()
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
