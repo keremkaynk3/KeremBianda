@@ -138,6 +138,28 @@
         color: #007bff; /* Üzerine gelince yazı rengini değiştirir */
         text-decoration: underline; /* Üzerine gelince alt çizgiyi geri getirir */
     }
+    .navbar-icons {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .navbar-icons .nav-link {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+    .navbar-icons img {
+        width: 30px;
+        height: 30px;
+        transition: transform 0.3s ease;
+    }
+    .navbar-icons img:hover {
+        transform: scale(1.2);
+    }
     </style>
 </head>
 <body>
@@ -146,14 +168,28 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
-            <h1>Blog1anda</h1>
+            <h1>Kerem1Anda</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
 </nav>
-<br>
+
+<div class="navbar-icons">
+    <a class="nav-link" href="https://github.com/keremkaynk3" target="_blank">
+        <img src="{{ url_for('static', filename='github.jpeg') }}" alt="Github">
+    </a>
+    <a class="nav-link" href="https://www.linkedin.com/in/keremkaynak3/" target="_blank">
+        <img src="{{ url_for('static', filename='linked.png') }}" alt="LinkedIn">
+    </a>
+    <a class="nav-link" href="https://www.instagram.com/keremkaynak3/" target="_blank">
+        <img src="{{ url_for('static', filename='instagram.webp') }}" alt="Instagram">
+    </a>
+    <a class="nav-link" href="https://www.youtube.com/@keremkaynak3" target="_blank">
+        <img src="{{ url_for('static', filename='youtube.png') }}" alt="YouTube">
+    </a>
+</div>
 
 <div class="container">
     <div class="row equal-height-row">
@@ -172,7 +208,7 @@
                 <h2 class="section-title">Projects</h2>
                 <!-- Projeler aynı kalabilir -->
                 <div class="project-item">
-                    <a href="https://github.com/keremkaynak3/blog1anda" target="_blank">Blog1Anda</a>
+                    <a href="https://github.com/keremkaynk3/Kerem1Anda" target="_blank">Kerem1Anda</a>
                 </div>
                 <div class="project-item">
                     <a href="https://github.com/keremkaynak3/TwelveB" target="_blank">TwelveB</a>
