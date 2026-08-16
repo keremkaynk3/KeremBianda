@@ -161,6 +161,9 @@
 </nav>
 
 <div class="navbar-icons">
+    <a class="nav-link" href="{{ url_for('static', filename='Kerem_Kaynak_Cv.pdf') }}" aria-label="CV" download>
+        <img src="{{ url_for('static', filename='cv.jpg') }}" alt="CV İndir">
+    </a>
     <a class="nav-link" href="https://github.com/keremkaynak3" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
         <img src="{{ url_for('static', filename='github.jpeg') }}" alt="Github">
     </a>
