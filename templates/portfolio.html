@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="{{ url_for('static', filename='logo.png') }}" type="image/png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e9ecef;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .navbar-brand img {
+            width: 50px;
+            height: auto;
+            margin-right: 10px;
+        }
+        .navbar-brand h1 {
+            margin: 0;
+            background: linear-gradient(to right, #ff0000, #000000, #ffffff);
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 2rem;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .content {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .content h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .content p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .content a {
+            color: #007bff;
+        }
+        .content img {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .section-title {
+            font-size: 1.75rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+        }
+        .row {
+            margin-bottom: 20px;
+        }
+        .col-md-4 {
+            margin-bottom: 20px;
+        }
+
+        /* Equal height columns (make white sections same size) */
+        .equal-height-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: stretch;
+            justify-content: center; /* center columns inside container */
+        }
+        .equal-height-row > .col-md-4 {
+            display: flex;
+            flex: 0 1 32%; /* three columns with responsive shrink/grow */
+            box-sizing: border-box;
+        }
+        .section {
+            flex: 1 1 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* center inner content horizontally */
+            padding: 20px;
+            min-height: 220px;
+        }
+        /* Ensure inner items don't stretch vertically and keep spacing */
+        .section .project-item,
+        .section .internship-item {
+            width: 100%;
+            flex: 0 0 auto;
+            text-align: center;
+        }
+
+        /* Mobile: stack columns and keep left-aligned readable */
+        @media (max-width: 768px) {
+            .equal-height-row > .col-md-4 { flex: 0 1 100%; }
+            .section { align-items: flex-start; text-align: left; }
+            .section .project-item, .section .internship-item { text-align: left; }
+        }
+        .project-item, .internship-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f1f3f5;
+            border-radius: 5px;
+        }
+        .project-item a {
+        text-decoration: none; /* Alt çizgiyi kaldırır */
+        color: #333; /* Yazı rengini değiştirir */
+        font-weight: bold; /* Yazıyı kalın yapar */
+        }
+        .project-item a:hover {
+        color: #007bff; /* Üzerine gelince yazı rengini değiştirir */
+        text-decoration: underline; /* Üzerine gelince alt çizgiyi geri getirir */
+    }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+            <h1>Blog1anda</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+<br>
+
+<div class="container">
+    <div class="row equal-height-row">
+        <div class="col-md-4">
+            <div class="section">
+                <h2 class="section-title">Education</h2>
+                <!-- Education bilgilerini veritabanından çek -->
+                {% for edu in education %}
+                <div class="project-item">{{ edu[0] }} - {{ edu[1] }}<br>{{ edu[2] }} ({{ edu[3] }})</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="section">
+                <h2 class="section-title">Projects</h2>
+                <!-- Projeler aynı kalabilir -->
+                <div class="project-item">
+                    <a href="https://github.com/keremkaynak3/blog1anda" target="_blank">Blog1Anda</a>
+                </div>
+                <div class="project-item">
+                    <a href="https://github.com/keremkaynak3/TwelveB" target="_blank">TwelveB</a>
+                </div>
+                <div class="project-item">
+                    <a href="https://github.com/keremkaynak3/IMDB1000" target="_blank">IMDB1000</a>
+                </div>
+                <div class="project-item">
+                    <a href="https://github.com/keremkaynak3/WatchedList" target="_blank">WatchedList</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="section">
+                <h2 class="section-title">Internships</h2>
+                <!-- Internships bilgilerini veritabanından çek -->
+                {% for intern in internships %}
+                <div class="internship-item">{{ intern[0] }} - {{ intern[1] }}<br>{{ intern[2] }} to {{ intern[3] }} ({{ intern[4] }})</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="section">
+                <h2 class="section-title">Professional Experience</h2>
+                <!-- Professional Experience bilgilerini veritabanından çek -->
+                {% for prof in profExp %}
+                <div class="internship-item">{{ prof[0] }} - {{ prof[1] }}<br>{{ prof[2] }} to {{ prof[3] }} ({{ prof[4] }})</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
